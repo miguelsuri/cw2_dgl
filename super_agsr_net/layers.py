@@ -43,6 +43,7 @@ class GSRLayer(nn.Module):
         self.f_d = f_d.fill_diagonal_(1)
         # adj = normalize_adj_torch(self.f_d)
         adj = self.f_d
+        adj = torch.clamp(adj, 0, 1)
         # print(adj)
 
         X = torch.mm(adj, adj.t())
